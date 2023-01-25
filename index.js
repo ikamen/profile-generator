@@ -5,11 +5,14 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+const Employee = require("./lib/Employee");
+
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+const e = new Employee();
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
