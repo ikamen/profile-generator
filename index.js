@@ -12,7 +12,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-const e = new Employee();
+const e = new Employee('sss', 1, 'sdfsd');
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
