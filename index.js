@@ -14,14 +14,13 @@ const questions = require("./lib/questions");
 
 const employees = [];
 
-//Code to gather information about the development team members, and render the HTML file.
+//Gather information about the development team members, and render the HTML file.
 
 
 // function to get the answers from the user and call the function that will create the file
 function promptUser() {
   
     inquirer.prompt(questions.manager_questions).then( (data) => {
-        // console.log("Man data: " + JSON.stringify(data));
         let manager = new Manager(data.manager_name, data.manager_id, data.manager_email, data.manager_number)
         employees.push(manager);
         promptFurther()
@@ -32,21 +31,20 @@ function promptUser() {
   function promptFurther() {
   
     inquirer.prompt(questions.multichoice_questions).then( (data) => {
-        console.log("Multichoice data: " + JSON.stringify(data));
         
         if (data.multichoice == 1) {
-            console.log ("Ask Eng questions");
+
             inquirer.prompt(questions.engineer_questions).then( (data) => {
-                // console.log("Engineer data: " + JSON.stringify(data));
+
                 let engineer = new Engineer(data.engineer_name, data.engineer_id, data.engineer_email, data.engineer_github)
                 employees.push(engineer);
                 promptFurther()
             })
             
         } else if (data.multichoice == 2) {
-            console.log ("Ask Int questions");
+
             inquirer.prompt(questions.intern_questions).then( (data) => {
-                // console.log("Intern data: " + JSON.stringify(data));
+
                 let intern = new Intern(data.intern_name, data.intern_id, data.intern_email, data.intern_school)
                 employees.push(intern);
                 promptFurther()
@@ -54,17 +52,15 @@ function promptUser() {
         } else {
             writeToFile(render(employees));
         }
-    
     });
   }
-
 
 // function to write README file
 function writeToFile(data) {
 
     fs.writeFile(outputPath, data, (err) => {
         if (err) throw err;
-        console.log('Your HTML file was created in the output folder!');
+        console.log('Your HTML file was created in the \'output\' folder!');
       });
 }
 
